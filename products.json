@@ -1,0 +1,133 @@
+{
+  "categories": [
+    "laptops",
+    "laptop-accessories",
+    "audio",
+    "smartphones",
+    "powerbanks",
+    "mens-fashion",
+    "womens-fashion"
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Dell Inspiron 15 Laptop",
+      "price": 699.99,
+      "category": "laptops",
+      "brand": "Dell",
+      "description": "Powerful everyday laptop with Intel Core i5, 8GB RAM, 512GB SSD, and full HD display.",
+      "image": "https://m.media-amazon.com/images/I/5123RN9jLNS._AC_UF894,1000_QL80_.jpg",
+      "rating": { "rate": 4.4, "count": 320 }
+    },
+    {
+      "id": 2,
+      "title": "HP Pavilion Gaming Laptop",
+      "price": 899.99,
+      "category": "laptops",
+      "brand": "HP",
+      "description": "Gaming-ready laptop with dedicated graphics, fast processor, and vibrant display.",
+      "image": "https://cdn.cs.1worldsync.com/39/f8/39f80569-9d29-46b8-b5d3-119da06628dd.jpg",
+      "rating": { "rate": 4.6, "count": 180 }
+    },
+    {
+      "id": 3,
+      "title": "Lenovo IdeaPad 3 Laptop",
+      "price": 549.99,
+      "category": "laptops",
+      "brand": "Lenovo",
+      "description": "Affordable and reliable laptop for work and study, with long battery life.",
+      "image": "https://m.media-amazon.com/images/I/61WNxdAeAoL._AC_UF1000,1000_QL80_.jpg",
+      "rating": { "rate": 4.3, "count": 450 }
+    },
+    {
+      "id": 4,
+      "title": "Universal 65W Laptop Charger",
+      "price": 29.99,
+      "category": "laptop-accessories",
+      "brand": "Generic",
+      "description": "Compatible with most Dell, HP, Lenovo, Acer laptops. Multiple tips included.",
+      "image": "https://m.media-amazon.com/images/I/6118HOJajHL._AC_UF894,1000_QL80_.jpg",
+      "rating": { "rate": 4.2, "count": 890 }
+    },
+    {
+      "id": 5,
+      "title": "Replacement Laptop Battery for Dell Inspiron",
+      "price": 49.99,
+      "category": "laptop-accessories",
+      "brand": "Generic",
+      "description": "High-capacity 42Wh replacement battery compatible with Dell Inspiron series.",
+      "image": "https://m.media-amazon.com/images/I/61QRvCYA7ZL._AC_UF894,1000_QL80_.jpg",
+      "rating": { "rate": 4.1, "count": 210 }
+    },
+    {
+      "id": 6,
+      "title": "Logitech Wireless Mouse",
+      "price": 24.99,
+      "category": "laptop-accessories",
+      "brand": "Logitech",
+      "description": "Ergonomic silent wireless mouse with long battery life.",
+      "image": "https://m.media-amazon.com/images/I/61wTUWlNcxL._AC_UF1000,1000_QL80_.jpg",
+      "rating": { "rate": 4.7, "count": 1200 }
+    },
+    {
+      "id": 7,
+      "title": "boAt Stone 650 Bluetooth Speaker",
+      "price": 39.99,
+      "category": "audio",
+      "brand": "boAt",
+      "description": "Portable IPX5 waterproof speaker with powerful sound and 7-hour playback.",
+      "image": "https://m.media-amazon.com/images/I/71PSFU2LFgL._AC_UF894,1000_QL80_.jpg",
+      "rating": { "rate": 4.5, "count": 5600 }
+    },
+    {
+      "id": 8,
+      "title": "JBL Go 4 Portable Speaker",
+      "price": 49.99,
+      "category": "audio",
+      "brand": "JBL",
+      "description": "Ultra-portable waterproof Bluetooth speaker with rich bass.",
+      "image": "https://content.abt.com/image.php/jbl-bluetooth-portable-speaker-black-JBLGO4BLKAM-front-right.jpg?image=/images/products/BDP_Images/jbl-bluetooth-portable-speaker-black-JBLGO4BLKAM-front-right.jpg&canvas=1&width=750&height=550",
+      "rating": { "rate": 4.6, "count": 890 }
+    },
+    {
+      "id": 9,
+      "title": "OnePlus Nord Smartphone",
+      "price": 399.99,
+      "category": "smartphones",
+      "brand": "OnePlus",
+      "description": "Premium mid-range smartphone with fluid AMOLED display and fast charging.",
+      "image": "https://oasis.opstatics.com/content/dam/oasis/page/2021/lemonade/news/0719/one%20plus%20nord.png",
+      "rating": { "rate": 4.5, "count": 2300 }
+    },
+    {
+      "id": 10,
+      "title": "Mi 50W Power Bank 20000mAh",
+      "price": 34.99,
+      "category": "powerbanks",
+      "brand": "Xiaomi",
+      "description": "Fast charging power bank with triple output and power delivery.",
+      "image": "https://i01.appmifile.com/webfile/globalimg/products/m/mi-50w-power-bank-20000/section11_2.png",
+      "rating": { "rate": 4.4, "count": 4500 }
+    },
+    {
+      "id": 11,
+      "title": "Traditional Men's Kurta Pajama",
+      "price": 45.99,
+      "category": "mens-fashion",
+      "brand": "Exotic India",
+      "description": "Comfortable pure cotton kurta pajama set for festivals and casual wear.",
+      "image": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/231ded2d-f970-4308-a5e6-1273b289d23c.__CR0,0,970,600_PT0_SX970_V1___.jpg",
+      "rating": { "rate": 4.3, "count": 180 }
+    },
+    {
+      "id": 12,
+      "title": "Indian Silk Saree",
+      "price": 79.99,
+      "category": "womens-fashion",
+      "brand": "Generic",
+      "description": "Elegant organza silk saree with beautiful woven design and blouse piece.",
+      "image": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b6419f0a-2f79-4589-b822-bfe1efe12f25.__CR0,30,2100,1299_PT0_SX970_V1___.jpg",
+      "rating": { "rate": 4.5, "count": 320 }
+    }
+  ]
+}

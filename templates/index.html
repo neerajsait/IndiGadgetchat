@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>IndiGadget Pro</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, black, #1e3c72);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 16px;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 85vh;
+            max-height: 800px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            background: linear-gradient(145deg, #1e3c72, #2a5298);
+            color: white;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1.2rem;
+            transition: background 0.2s;
+        }
+
+        .icon-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .cart-button {
+            background-color: #28a745;
+            border: none;
+            border-radius: 30px;
+            padding: 8px 18px;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .cart-button:hover {
+            background-color: #218838;
+            transform: scale(1.02);
+        }
+
+        .cart-button i {
+            font-size: 1.1rem;
+        }
+
+        .chat-box {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #f8faff;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .message {
+            margin: 4px 0;
+            padding: 12px 16px;
+            border-radius: 20px;
+            max-width: 85%;
+            line-height: 1.5;
+            word-wrap: break-word;
+            animation: fadeIn 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.bot {
+            background-color: #e4e9ff;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            color: #1a237e;
+        }
+
+        .message.user {
+            background: linear-gradient(145deg, #1e3c72, #2a5298);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.error {
+            background-color: #ffebee;
+            color: #d32f2f;
+            align-self: center;
+            font-weight: 500;
+        }
+
+        .product-image {
+            max-width: 100%;
+            max-height: 220px;
+            margin: 10px auto;
+            border-radius: 16px;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border: 2px solid white;
+        }
+
+        .input-container {
+            padding: 16px 20px 20px;
+            background-color: white;
+            border-top: 1px solid #eef2f7;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #e0e7ff;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: #f8faff;
+        }
+
+        input:focus {
+            border-color: #2a5298;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42,82,152,0.2);
+        }
+
+        .send-button {
+            padding: 14px 24px;
+            background: linear-gradient(145deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .send-button:hover:not(:disabled) {
+            background: linear-gradient(145deg, #16355f, #1e3c72);
+            transform: scale(1.02);
+        }
+
+        .send-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .suggestions {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .suggestions button {
+            padding: 8px 14px;
+            background-color: #f0f4ff;
+            border: 1px solid #ccd9ff;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #1e3c72;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .suggestions button:hover {
+            background-color: #e0e9ff;
+            border-color: #2a5298;
+            transform: translateY(-2px);
+        }
+
+        /* Scrollbar */
+        .chat-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-box::-webkit-scrollbar-track {
+            background: #eef2f7;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background: #2a5298;
+            border-radius: 20px;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 450px) {
+            .header h2 {
+                font-size: 1.2rem;
+            }
+            .cart-button span {
+                display: none;
+            }
+            .cart-button i {
+                margin-right: 0;
+            }
+            .suggestions button {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+            .send-button {
+                padding: 14px 18px;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons (optional but nice) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="header">
+            <h2>IndiGadget Pro</h2>
+            <div class="header-actions">
+                <button onclick="clearChat()" class="icon-button" title="Clear chat"><i class="fas fa-trash-alt"></i></button>
+                <button onclick="viewCart()" class="cart-button"><i class="fas fa-shopping-cart"></i> <span>Cart</span></button>
+            </div>
+        </div>
+        <div class="chat-box" id="chatBox">
+            <div class="message bot">
+                Hi! Welcome to IndiGadget Store <br><br>
+                Type <strong>hi</strong> to see all categories (laptops, audio, fashion, accessories...)<br>
+                Or type <strong>help</strong> for full commands (cart, checkout, orders, cancel order, discounts, search...).
+            </div>
+        </div>
+        <div class="input-container">
+            <div class="input-row">
+                <input type="text" id="userInput" placeholder="Type a message..." autofocus>
+                <button class="send-button" id="sendBtn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send</button>
+            </div>
+            <div class="suggestions">
+                <button onclick="sendSuggestion('hi')"><i class="fas fa-hand-wave"></i> Hi</button>
+                <button onclick="sendSuggestion('laptops')"><i class="fas fa-laptop"></i> Laptops</button>
+                <button onclick="sendSuggestion('audio')"><i class="fas fa-headphones"></i> Audio</button>
+                <button onclick="sendSuggestion('cart')"><i class="fas fa-cart-shopping"></i> Cart</button>
+                <button onclick="sendSuggestion('checkout')"><i class="fas fa-credit-card"></i> Checkout</button>
+                <button onclick="sendSuggestion('orders')"><i class="fas fa-box"></i> Orders</button>
+                <button onclick="sendSuggestion('help')"><i class="fas fa-question-circle"></i> Help</button>
+                <button onclick="sendSuggestion('apply SAVE10')">💸 SAVE10</button>
+                <button onclick="sendSuggestion('apply FREESHIP')">🚚 FREESHIP</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isLoading = false;
+
+        // Unified function to add bot responses (handles line breaks and images)
+        function addBotResponse(text) {
+            const chatBox = document.getElementById('chatBox');
+            const botMessage = document.createElement('div');
+            botMessage.className = 'message bot';
+
+            // Improved regex for images (supports Image: URL at start or after line break)
+            let html = text
+                .replace(/\n/g, '<br>')
+                .replace(/(?:^|<br>)Image:\s*(https?:\/\/[^\s<]+)/g, '<img src="$1" class="product-image" alt="Product image" onerror="this.style.display=\'none\'">');
+
+            botMessage.innerHTML = html;
+            chatBox.appendChild(botMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput').value.trim();
+            if (!userInput || isLoading) return;
+
+            const chatBox = document.getElementById('chatBox');
+            const sendBtn = document.getElementById('sendBtn');
+
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.textContent = userInput;
+            chatBox.appendChild(userMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Clear input
+            document.getElementById('userInput').value = '';
+
+            // Set loading state
+            isLoading = true;
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '<span class="spinner"></span> Sending...';
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: userInput,
+                        session_data: JSON.parse(localStorage.getItem('session_data') || '{}')
+                    })
+                });
+                const data = await response.json();
+
+                addBotResponse(data.response);
+                localStorage.setItem('session_data', JSON.stringify(data.session_data));
+            } catch (error) {
+                console.error('Chat error:', error);
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'message bot error';
+                errorMessage.textContent = '⚠️ Error communicating with the server. Please try again.';
+                chatBox.appendChild(errorMessage);
+            } finally {
+                isLoading = false;
+                sendBtn.disabled = false;
+                sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send';
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
+
+        async function viewCart() {
+            if (isLoading) return;
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: 'cart',
+                        session_data: JSON.parse(localStorage.getItem('session_data') || '{}')
+                    })
+                });
+                const data = await response.json();
+                addBotResponse(data.response);
+                localStorage.setItem('session_data', JSON.stringify(data.session_data));
+            } catch (error) {
+                console.error('Cart error:', error);
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'message bot error';
+                errorMessage.textContent = '⚠️ Error fetching cart. Please try again.';
+                chatBox.appendChild(errorMessage);
+            }
+        }
+
+        function clearChat() {
+            if (confirm('Clear all messages?')) {
+                const chatBox = document.getElementById('chatBox');
+                // Keep only the first welcome message (or you can reset fully)
+                chatBox.innerHTML = '';
+                const welcome = document.createElement('div');
+                welcome.className = 'message bot';
+                welcome.innerHTML = 'Hi! Welcome to IndiGadget Pro 🇮🇳<br><br>Type <strong>hi</strong> to see all categories...';
+                chatBox.appendChild(welcome);
+                // Optionally clear session data? Usually not, keep cart alive.
+                // localStorage.removeItem('session_data'); // uncomment if you want fresh session
+            }
+        }
+
+        function sendSuggestion(command) {
+            document.getElementById('userInput').value = command;
+            sendMessage();
+        }
+
+        // Allow Enter key to send
+        document.getElementById('userInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        // Focus input on load
+        window.addEventListener('load', () => {
+            document.getElementById('userInput').focus();
+        });
+    </script>
+</body>
+</html>
